@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createApiAction } from "../../utilities/Redux";
 
 export const homeMovies = createApiAction("home/movies");
-
 export const fetchHomePageDataAsync = createAsyncThunk(
   homeMovies.name,
   async () => {
