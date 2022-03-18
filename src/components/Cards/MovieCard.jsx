@@ -11,6 +11,7 @@ import palette from "../../theme/Palette";
 import { baseImageUrl } from "../../constants/Api";
 import { addToFavourites, removeFromFavourites } from "../../features/Actions";
 import { useDispatch } from "react-redux";
+import placeholderImage from "../../images/placeholder.jpg";
 
 const useStyles = makeStyles(() => ({
   cardContainer: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles(() => ({
 
 const MovieCard = (props) => {
   const dispatch = useDispatch();
-  const { poster_path, title, overview, release_date, adult } = props.movie;
+  const { poster_path, title, overview, release_date } = props.movie;
   const { isFavourite } = props;
   const classes = useStyles();
 
@@ -45,6 +46,10 @@ const MovieCard = (props) => {
           height="450"
           image={`${baseImageUrl}${poster_path}`}
           alt={poster_path}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = placeholderImage;
+          }}
         />
         <CardContent className={classes.cardContent}>
           <div className={classes.titleYear}>
