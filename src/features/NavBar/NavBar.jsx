@@ -51,7 +51,7 @@ const NavBar = () => {
         className={classes.navItem}
         variant="text"
         onClick={() =>
-          dispatch(filterFavouriteMovies(favouritesNavItem.sortCode))
+          dispatch(filterFavouriteMovies())
         }
       >
         {favouritesNavItem.description}

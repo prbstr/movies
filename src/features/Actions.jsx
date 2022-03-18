@@ -42,7 +42,7 @@ export const sortMovies = (allMovies, dimension) => {
   };
 };
 
-export const filterFavouriteMovies = (dimension) => {
+export const filterFavouriteMovies = () => {
   return {
     type: getFavouriteMoviesAction,
   };
