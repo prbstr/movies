@@ -10,15 +10,23 @@ const initialState = {
   movies: [],
   favouriteMovies: [],
   sortedAndFilteredMovies: [],
+  loading: false
 };
 
 const homeReducer = (state = initialState, action) => {
   switch (action.type) {
+    case homeMoviesApi.pending: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
     case homeMoviesApi.success: {
       return {
         ...state,
         movies: action.payload,
         sortedAndFilteredMovies: action.payload,
+        loading: false
       };
     }
     case homeMoviesApi.rejected: {
@@ -26,6 +34,7 @@ const homeReducer = (state = initialState, action) => {
         ...state,
         movies: initialState.movies,
         sortedAndFilteredMovies: initialState.sortedAndFilteredMovies,
+        loading: false
       };
     }
     case sortAction: {

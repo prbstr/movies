@@ -22,6 +22,8 @@ const useStyles = makeStyles(() => ({
   },
   actions: {
     backgroundColor: palette.secondary,
+    display: "flex",
+    flexDirection: "row-reverse",
   },
   titleYear: {
     display: "flex",
@@ -31,7 +33,7 @@ const useStyles = makeStyles(() => ({
 
 const MovieCard = (props) => {
   const dispatch = useDispatch();
-  const { poster_path, title, overview, release_date } = props.movie;
+  const { poster_path, title, overview, release_date, adult } = props.movie;
   const { isFavourite } = props;
   const classes = useStyles();
 
@@ -53,7 +55,7 @@ const MovieCard = (props) => {
               {release_date?.substring(0, 4)}
             </Typography>
           </div>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2">
             {overview?.split(" ").slice(0, 25).join(" ")}...
           </Typography>
         </CardContent>

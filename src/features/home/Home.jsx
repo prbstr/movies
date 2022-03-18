@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -17,22 +17,29 @@ const useStyles = makeStyles({
     color: palette.secondary,
     display: "flex",
     justifyContent: "center",
-    marginTop: "20vh",
+    marginTop: "40vh",
   },
 });
 
 const Home = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const { movies, favouriteMovies, sortedAndFilteredMovies } = useSelector(
-    (state) => state.home
-  );
+  const { loading, movies, favouriteMovies, sortedAndFilteredMovies } =
+    useSelector((state) => state.home);
 
   useEffect(() => {
     if (movies.length === 0) {
       dispatch(fetchHomePageDataAsync());
     }
   }, [dispatch, movies]);
+
+  if (loading) {
+    return (
+      <div className={classes.noMoviesTextContainer}>
+        <CircularProgress color="secondary" />;
+      </div>
+    );
+  }
 
   if (movies.length === 0 || sortedAndFilteredMovies.length === 0) {
     return (
