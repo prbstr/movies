@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Home from "../features/Home";
+import Home from "../features/Home/Home";
 import { makeStyles } from "@mui/styles";
 import NavBar from "../features/NavBar/NavBar";
 
