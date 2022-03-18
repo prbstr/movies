@@ -3,9 +3,9 @@ import { makeStyles } from "@mui/styles";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import MovieCard from "../../components/Cards/MovieCard";
-import palette from "../../theme/Palette";
-import { fetchHomePageDataAsync } from "../Actions";
+import MovieCard from "../components/Cards/MovieCard";
+import palette from "../theme/Palette";
+import { fetchHomePageDataAsync } from "./Actions";
 
 const useStyles = makeStyles({
   moviesContainer: {},

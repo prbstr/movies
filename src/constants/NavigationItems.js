@@ -8,7 +8,7 @@ export const navItems = [
   },
   {
     id: 2,
-    description: "Favourites",
+    description: "My Movies",
     sortCode: SortDimensions.FAVOURITES,
   },
   {
