@@ -59,7 +59,7 @@ const Home = () => {
             (favourite) => favourite.id === movie.id
           );
           return (
-            <Grid item md={3} key={movie.title} className={classes.movie}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={movie.title} className={classes.movie}>
               <MovieCard movie={movie} isFavourite={isFavourite} />
             </Grid>
           );
