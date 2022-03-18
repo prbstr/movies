@@ -8,11 +8,12 @@ export const sortByTitle = (a, b) => {
   }
 };
 
-export const sortByPopularity = (a, b) => a.popularity - b.popularity;
+export const sortByPopularity = (a, b) => b.popularity - a.popularity;
+
 export const sortByReleaseDate = (a, b) => {
   if (b.release_date > a.release_date) {
     return 1;
-  } else if (b.release_date < a.release_date ) {
+  } else if (b.release_date < a.release_date) {
     return -1;
   } else {
     return 0;

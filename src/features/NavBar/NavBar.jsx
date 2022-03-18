@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { navItems } from "../../constants/NavigationItems";
 import { SortDimensions } from "../../constants/SortDimensions";
+import palette from "../../theme/Palette";
 
 const useStyles = makeStyles({
   navItemContainer: {
-    backgroundColor: "darkgrey",
+    backgroundColor: palette.secondary,
     height: "60px",
     padding: "12px 24px",
   },

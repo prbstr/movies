@@ -6,7 +6,8 @@ import { sortByPopularity, sortByReleaseDate, sortByTitle } from "../utilities/S
 export const homeMoviesApi = createApiAction("home/movies");
 export const sortAction = "sort/movies";
 export const getFavouriteMoviesAction = "filter/favourites";
-
+export const addToFavouritesAction = "favourites/add";
+export const removeFromFavouritesAction = "favourites/remove";
 export const fetchHomePageDataAsync = createAsyncThunk(
   homeMoviesApi.name,
   async () => {
@@ -14,7 +15,6 @@ export const fetchHomePageDataAsync = createAsyncThunk(
       "https://api.themoviedb.org/3/movie/popular?api_key=bd00ab70e1aafefa95d2444b8c7f2ccc";
     const response = await fetch(url);
     const payload = await response.json();
-    console.log(payload);
     return payload.results.slice(0, 12).sort(sortByTitle);
   }
 );
@@ -47,3 +47,17 @@ export const filterFavouriteMovies = () => {
     type: getFavouriteMoviesAction,
   };
 };
+
+export const addToFavourites = (movie) => {
+  return {
+    type: addToFavouritesAction,
+    payload: movie
+  }
+}
+
+export const removeFromFavourites = (movie) => {
+  return {
+    type: removeFromFavouritesAction,
+    payload: movie
+  }
+}
