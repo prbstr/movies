@@ -1,25 +1,45 @@
-import { homeMovies } from "./Actions";
+import {
+  sortAction,
+  homeMoviesApi,
+  getFavouriteMoviesAction,
+} from "../Actions";
 
 const initialState = {
-  movies: []
+  movies: [],
+  favouriteMovies: [],
+  sortedAndFilteredMovies: [],
 };
 
 const homeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case homeMovies.success: {
+    case homeMoviesApi.success: {
       return {
         ...state,
-        movies: action.payload
-      }
+        movies: action.payload,
+        sortedAndFilteredMovies: action.payload,
+      };
     }
-    case homeMovies.rejected: {
+    case homeMoviesApi.rejected: {
       return {
         ...state,
-        movies: action.payload
-      }
+        movies: initialState.movies,
+        sortedAndFilteredMovies: initialState.sortedAndFilteredMovies,
+      };
+    }
+    case sortAction: {
+      return {
+        ...state,
+        sortedAndFilteredMovies: action.payload,
+      };
+    }
+    case getFavouriteMoviesAction: {
+      return {
+        ...state,
+        sortedAndFilteredMovies: state.favouriteMovies,
+      };
     }
     default:
       return state;
   }
-}
+};
 export default homeReducer;

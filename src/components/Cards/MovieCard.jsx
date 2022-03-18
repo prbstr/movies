@@ -3,8 +3,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, CardActions, IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import StarIcon from '@mui/icons-material/Star';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 const useStyles = makeStyles(() => ({
   cardContainer: {
@@ -15,39 +17,45 @@ const useStyles = makeStyles(() => ({
   },
   titleYear: {
     display: "flex",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 }));
 
 const MovieCard = ({
-  imagePath,
+  poster_path,
   title,
-  description,
+  overview,
+  release_date,
   baseUrl = "https://image.tmdb.org/t/p/original",
 }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.cardContainer} sx={{ maxWidth: 400 }}>
+    <Card className={classes.cardContainer}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="450"
-          image={`${baseUrl}${imagePath}`}
-          alt={imagePath}
+          image={`${baseUrl}${poster_path}`}
+          alt={poster_path}
         />
         <CardContent className={classes.cardContent}>
           <div className={classes.titleYear}>
             <Typography gutterBottom variant="h5">
-            {title}
-          </Typography>
-          <Typography gutterBottom variant="h5">
-    2019
-          </Typography>
-          </div>          
+              {title}
+            </Typography>
+            <Typography gutterBottom variant="h5">
+              {release_date?.substring(0, 4)}
+            </Typography>
+          </div>
           <Typography variant="body2" color="text.secondary">
-            {description.split(" ").slice(0, 25).join(" ")}...
+            {overview.split(" ").slice(0, 25).join(" ")}...
           </Typography>
         </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <StarIcon />
+          </IconButton>
+        </CardActions>
       </CardActionArea>
     </Card>
   );

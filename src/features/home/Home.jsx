@@ -4,15 +4,13 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import MovieCard from "../../components/Cards/MovieCard";
-import { fetchHomePageDataAsync } from "./Actions";
+import { fetchHomePageDataAsync } from "../Actions";
 
 const useStyles = makeStyles({
-  moviesContainer: {
-    margin: "24px"
-  },
+  moviesContainer: {},
   movie: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     // alignItems: "center",
     // textAlign: "center",
   },
@@ -21,26 +19,24 @@ const useStyles = makeStyles({
 const Home = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const { movies } = useSelector((state) => state.home);
-
+  const { sortedAndFilteredMovies } = useSelector((state) => state.home);
+  console.log(sortedAndFilteredMovies);
   useEffect(() => {
     dispatch(fetchHomePageDataAsync());
-  }, []);
+  }, [dispatch]);
 
   return (
-    <Grid container className={classes.movieContainer}>
-      {movies.map((movie) => {
-        return (
-          <Grid item md={3} key={movie.title} className={classes.movie}>
-            <MovieCard
-              title={movie.title}
-              description={movie.overview}
-              imagePath={movie.poster_path}
-            />
-          </Grid>
-        );
-      })}
-    </Grid>
+    <>
+      <Grid container className={classes.moviesContainer}>
+        {sortedAndFilteredMovies?.map((movie) => {
+          return (
+            <Grid item md={3} key={movie.title} className={classes.movie}>
+              <MovieCard {...movie} />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 

@@ -1,27 +1,33 @@
 import React from "react";
 import "./App.css";
-import Home from "../features/home/Home";
+import Home from "../features/Home/Home";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
+import NavBar from "../features/NavBar/NavBar";
 
 const useStyles = makeStyles({
   root: {
-    margin: "24px 12px",
+    margin: "0px 0",
+    backgroundColor: "lightgrey",
   },
   heading: {
-    marginLeft: '30px'
-  }
+    marginLeft: "30px",
+  },
 });
 
 const App = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <div className={classes.heading} style={{height: '160px'}}>
-        <Typography  variant="h2">Movie Library</Typography>
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <div className={classes.root}>
+        <div>
+          <Home />
+        </div>
       </div>
-      <Home />
-    </div>
+    </>
   );
 };
 
