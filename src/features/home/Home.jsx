@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import MovieCard from "../../components/Cards/MovieCard";
 import palette from "../../theme/Palette";
-import { fetchHomePageDataAsync, filterFavouriteMovies } from "../Actions";
+import { fetchHomePageDataAsync } from "../Actions";
 
 const useStyles = makeStyles({
   moviesContainer: {},
@@ -34,7 +34,7 @@ const Home = () => {
     }
   }, [dispatch, movies]);
 
-  if (sortedAndFilteredMovies.length === 0) {
+  if (movies.length === 0 || sortedAndFilteredMovies.length === 0) {
     return (
       <div className={classes.noMoviesTextContainer}>
         <Typography variant="h4">
