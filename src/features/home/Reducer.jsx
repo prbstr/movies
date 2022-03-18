@@ -10,7 +10,7 @@ const initialState = {
   movies: [],
   favouriteMovies: [],
   sortedAndFilteredMovies: [],
-  loading: false
+  loading: false,
 };
 
 const homeReducer = (state = initialState, action) => {
@@ -18,15 +18,15 @@ const homeReducer = (state = initialState, action) => {
     case homeMoviesApi.pending: {
       return {
         ...state,
-        loading: true
-      }
+        loading: true,
+      };
     }
     case homeMoviesApi.success: {
       return {
         ...state,
         movies: action.payload,
         sortedAndFilteredMovies: action.payload,
-        loading: false
+        loading: false,
       };
     }
     case homeMoviesApi.rejected: {
@@ -34,7 +34,7 @@ const homeReducer = (state = initialState, action) => {
         ...state,
         movies: initialState.movies,
         sortedAndFilteredMovies: initialState.sortedAndFilteredMovies,
-        loading: false
+        loading: false,
       };
     }
     case sortAction: {
@@ -55,16 +55,15 @@ const homeReducer = (state = initialState, action) => {
         favouriteMovies: [...state.favouriteMovies, action.payload],
       };
     }
-    case removeFromFavouritesAction:
-      {
-        const itemToRemoveIndex = state.favouriteMovies.indexOf(action.payload);
-        const newFavourites = [...state.favouriteMovies];
-        newFavourites.splice(itemToRemoveIndex, 1);
-        return {
-          ...state,
-          favouriteMovies: newFavourites
-        };
-      }
+    case removeFromFavouritesAction: {
+      const itemToRemoveIndex = state.favouriteMovies.indexOf(action.payload);
+      const newFavourites = [...state.favouriteMovies];
+      newFavourites.splice(itemToRemoveIndex, 1);
+      return {
+        ...state,
+        favouriteMovies: newFavourites,
+      };
+    }
     default:
       return state;
   }
